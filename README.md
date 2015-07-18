@@ -1,8 +1,8 @@
 # Itamae Snippets
 
-![Itamae Snippets Sample](itamae-snippets.gif)
-
 Snippets to help you writing Itamae Recipe.
+
+![Itamae Snippets Sample](itamae-snippets.gif)
 
 ## Itamae Resources
 
