@@ -1,0 +1,236 @@
+'.source.ruby':
+  'directory':
+    'prefix': 'itamae-d'
+    'body': '''
+        directory "${1:/path/to/directory}" do
+          action  :${2:create,delete,nothing}
+          ${3:user    "${4:user name}"}
+          ${5:path    "${1:${6:}}"}
+          ${7:mode    "${8:644,755...}"}
+          ${9:owner   "${10:owner name}"}
+          ${11:group   "${12:group name}"}
+          ${13:only_if "${14:}"}
+          ${15:not_if  "${16:}"}
+        end
+    '''
+
+  'execute':
+    'prefix': 'itamae-e'
+    'body': '''
+        execute "${1:create an empty file}" do
+          action :${2:run,nothing}
+          ${3:user    "${4:user name}"}
+          ${5:command "${6:touch /path/to/file}"}
+          ${8:cwd     "${9:/path/to/command/execute}"}
+          ${10:only_if "${11:}"}
+          ${12:not_if  "${13:}"}
+        end
+    '''
+
+  'file':
+    'prefix': 'itamae-f'
+    'body': '''
+        file "${1:/path/to/file}" do
+          action :${2:create,delete,edit,nothing}
+          ${3:user    "${4:user name}"}
+          ${5:path    "${1:${6:}}"}
+          ${7:content "${8:}"}
+          ${9:mode    "${10:644,755,...}"}
+          ${11:owner   "${12:owner name}"}
+          ${13:group   "${14:group name}"}
+          ${15:block do |${16:content}|
+            ${17:content.gsub!("world", "Itamae")}
+          end}
+          ${18:only_if "${19:}"}
+          ${20:not_if  "${21:}"}
+        end
+    '''
+
+  'gem_package':
+    'prefix': 'itamae-gp'
+    'body': '''
+        gem_package "${1:package name}" do
+          action       :${2:install,upgrade,nothing}
+          ${3:user         "${4:user name}"}
+          ${5:package_name "${1:${6:}}"}
+          ${7:gem_binary   "${8:gem}"}
+          ${9:version      "${10:0.0.0}"}
+          ${11:source       "${12:/path/to/source/file}"}
+          ${13:only_if      "${14:}"}
+          ${15:not_if       "${16:}"}
+        end
+    '''
+
+  'git':
+    'prefix': 'itamae-git'
+    'body': '''
+        git "${1:package name}" do
+          action :${2:sync,nothing}
+          ${4:user        "${5:user name}"}
+          ${6:destination "${7:/path/to/directory}"}
+          repository  "${3:/path/to/repository}"
+          ${8:revision    "${9:Revision}"}
+          ${10:only_if "${11:}"}
+          ${12:not_if  "${13:}"}
+        end
+    '''
+
+  'group':
+    'prefix': 'itamae-g'
+    'body': '''
+        group "${1:group name}" do
+          action :${2:create,nothing}
+          ${3:user      "${4:user name}"}
+          ${5:groupname "${1:${6:}}"}
+          ${7:gid       ${8:GROUP ID (Integer)}}
+          ${8:only_if   "${9:}"}
+          ${10:not_if    "${11:}"}
+        end
+    '''
+
+  'link':
+    'prefix': 'itamae-l'
+    'body': '''
+        link "${1:/path/to/file-name}" do
+          action  :${2:create,nothing}
+          ${4:user    "${5:user name}"}
+          ${6:link    "${1:${7:}}"}
+          to      "${3:/path/to/link-name}"
+          ${8:force    ${9:true,false}}
+          ${10:only_if "${11:}"}
+          ${12:not_if  "${13:}"}
+        end
+    '''
+
+  'local_ruby_block':
+    'prefix': 'itamae-lrb'
+    'body': '''
+        local_ruby_block "${1:Resource name}" do
+          action  :${2:run,nothing}
+          ${3:user    "${4:user name}"}
+          ${5:block do
+            ${6:ruby code}
+          end}
+          ${7:only_if "${8:}"}
+          ${9:not_if  "${10:}"}
+        end
+    '''
+
+  'package':
+    'prefix': 'itamae-p'
+    'body': '''
+        package "${1:Package name}" do
+          action  :${2:install,remove,nothing}
+          ${3:user    "${4:user name}"}
+          ${5:name    "${1:${6:}}"}
+          ${7:version "${8:package version}"}
+          ${9:options "${10:install options}"}
+          ${11:only_if "${12:}"}
+          ${13:not_if  "${14:}"}
+        end
+    '''
+
+  'remote_directory':
+    'prefix': 'itamae-rd'
+    'body': '''
+        remote_directory "${1:/path/to/remote/directory}" do
+          action  :${2:create,delete,nothing}
+          ${4:user    "${5:user name}"}
+          ${6:path    "${1:${7:}}"}
+          source  "${3:/path/to/source/directory}"
+          ${8:mode    "${9:644,755,...}"}
+          ${10:owner   "${11:owner name}"}
+          ${12:group   "${13:group name}"}
+          ${14:only_if "${15:}"}
+          ${16:not_if  "${17:}"}
+        end
+    '''
+
+  'remote_file':
+    'prefix': 'itamae-rf'
+    'body': '''
+        remote_file "${1:/path/to/remote/file}" do
+          action  :${2:create,delete,edit,nothing}
+          ${3:user    "${4:user name}"}
+          ${5:path    "${1:${6:}}"}
+          ${7:content "${8:Hello World!}"}
+          ${9:mode    "${10:644,755,...}"}
+          ${11:owner   "${12:owner name}"}
+          ${13:group   "${14:group name}"}
+          ${15:block do |${16:content}|
+            ${17:content.gsub!("world", "Itamae")}
+          end}
+          ${18:source  "${19:/path/to/source/file}"}
+          ${20:only_if "${21:}"}
+          ${22:not_if  "${23:}"}
+        end
+    '''
+
+  'service':
+    'prefix': 'itamae-s'
+    'body': '''
+        service "${1:service name}" do
+          action   :${2:nothing,start,stop,restart,reload,enable,disable}
+          ${3:user     "${4:user name}"}
+          ${5:name     "${1:${6:}}"}
+          ${7:provider :${8:provider}}
+          ${9:only_if  "${10:}"}
+          ${11:not_if   "${12:}"}
+        end
+    '''
+
+  'template':
+    'prefix': 'itamae-t'
+    'body': '''
+        template "${1:/path/to/dest/file-name}" do
+          action  :${2:create,delete,edit,nothing}
+          ${3:user    "${4:user name}"}
+          ${5:path    "${1:${6:}}"}
+          ${7:content "${8:Hello World!}"}
+          ${9:mode    "${10:644,755,...}"}
+          ${11:owner   "${12:owner name}"}
+          ${13:group   "${14:group name}"}
+          ${15:block do |${16:content}|
+            ${17:content.gsub!("world", "Itamae")}
+          end}
+          ${18:source  "${19:/path/to/template/file}"}
+          ${20:variables ${21:(message: "World")}}
+          ${12:only_if "${23:}"}
+          ${24:not_if  "${25:}"}
+        end
+    '''
+
+  'user':
+    'prefix': 'itamae-u'
+    'body': '''
+        user "${1:user name}" do
+          action      :${2:create,nothing}
+          ${3:user        "${4:user name}"}
+          ${5:username    "${1:${6:}}"}
+          ${7:gid         ${8:GROUP ID (Integer)}}
+          ${9:home        "${10:/path/to/home/directory}"}
+          ${11:password    "${12:PASSWORD (e.g. mkunixcrypt -s 'salt')}"}
+          ${13:system_user ${14:true,false}}
+          ${15:uid         ${16:USER ID (Integer)}}
+          ${17:shell       "${18:/path/to/shell}"}
+          ${19:create_home ${20:true,false}}
+          ${21:only_if     "${22:}"}
+          ${23:not_if      "${24:}"}
+        end
+    '''
+
+  'node[:name]':
+    'prefix': 'itamae-node'
+    'body': 'node[:${1:name}]'
+
+  '#{node[:name]}':
+    'prefix': 'itamae-node2'
+    'body': '#{node[:${1:name}]}'
+
+  'log':
+    'prefix': 'itamae-log'
+    'body': "Logger.${1:info,debug,warn,error}('${2:message}')"
+
+  'include-recipe':
+    'prefix': 'itamae-ir'
+    'body': 'include_recipe "${1:/path/to/recipe.rb}"'
