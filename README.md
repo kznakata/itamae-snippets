@@ -1,11 +1,13 @@
 # Itamae Snippets
 
+![Itamae Snippets Sample](itamae-snippets.gif)
+
 Snippets to help you writing Itamae Recipe.
 
 ## Itamae Resources
 
 | Snippet | Description |
-|:-|:-|
+|:---|:---|
 | `itamae-d`   | Itamae directory resource |
 | `itamae-e`   | Itamae execute  resource |
 | `itamae-f`   | Itamae file resource |
@@ -25,7 +27,7 @@ Snippets to help you writing Itamae Recipe.
 ## Other Itamae snippets
 
 | Snippet | Output |
-|:-|:-|
+|:---|:---|
 | `itamae-node`  | `node[:name]` |
 | `itamae-node2` | `#{node[:name]}` |
 | `itamae-log`   | `Logger.info('message')` |
