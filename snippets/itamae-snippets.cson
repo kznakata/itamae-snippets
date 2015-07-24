@@ -234,3 +234,23 @@
   'include-recipe':
     'prefix': 'itamae-ir'
     'body': 'include_recipe "${1:/path/to/recipe.rb}"'
+
+  'vagrant-itamae':
+    'prefix': 'itamae-vagrant'
+    'body': '''
+        Vagrant.configure('2') do |config|
+          config.vm.box = "${1:__BOX__/__NAME__}"
+
+          config.vm.provision :itamae do |config|
+            # execute command with sudo privilege (true or false)
+            config.sudo = ${2:true,false}
+
+            # recipes (String or Array)
+            config.recipes = ${3:['${4:path/to/itame-recipe.rb}']}
+
+            # Node Attributes (JSON or YAML)
+            ${5:config.json    = '${6:path/to/itame-node.json}'}
+            ${7:config.yaml    = '${8:path/to/itame-node.yaml}'}
+          end
+        end
+    '''

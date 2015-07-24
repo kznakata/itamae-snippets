@@ -1,8 +1,8 @@
-# Itamae Snippets
+# Snippets for Itamae Recipe.
 
 Snippets to help you writing Itamae Recipe.
 
-![Itamae Snippets Sample](itamae-snippets.gif)
+![Itamae Snippets Sample](https://raw.githubusercontent.com/kznakata/itamae-snippets/master/itamae-snippets.gif)
 
 ## Itamae Resources
 
@@ -32,3 +32,10 @@ Snippets to help you writing Itamae Recipe.
 | `itamae-node2` | `#{node[:name]}` |
 | `itamae-log`   | `Logger.info('message')` |
 | `itamae-ir`    | `include_recipe "/path/to/recipe.rb"` |
+
+
+# Snippets for vagrant-itamae.
+
+[vagrant-itamae](https://github.com/chiastolite/vagrant-itamae) is plugin for Vagrant.
+
+![Itamae Snippets Sample](https://raw.githubusercontent.com/kznakata/itamae-snippets/master/itamae-snippets2.gif)
